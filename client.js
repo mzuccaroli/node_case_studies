@@ -1,13 +1,15 @@
+var settings = require('./settings');
 var io = require('socket.io-client');
-var socket = io.connect('http://localhost:3000', {reconnect: true});
 var readline = require('readline');
 
-var username = '';
+var socket = io.connect(settings.url+':'+settings.port, {reconnect: true});
 
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+
+var username = '';
 
 
 //connect listener

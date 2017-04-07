@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+
     <title>Socket.IO chat</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,11 +15,12 @@
       #messages { margin-bottom: 40px }
       #messages li.sysmsg { background: rgb(130, 224, 255); }
     </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" /><button>Enter your name</button>
+      <input id="m" autocomplete="off" /><button><i class="material-icons">send</i></button>
     </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
@@ -28,14 +30,15 @@
         var socket = io();
         $('form').submit(function(){
           var msg = $('#m').val();
+          if(msg){
           if(username){
             socket.emit('chat message', msg);
           } else {
             username = $('#m').val();
             socket.emit('nickname chosen', msg);
-            $('button').text('Send');
           }
           $('#m').val('');
+          }
           return false;
         });
         socket.on('chat message', function(msg){
