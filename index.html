@@ -1,60 +1,33 @@
-<!doctype html>
-<html>
-  <head>
 
-    <title>Socket.IO chat</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(2n+0) { background: #eee; }
-      #messages { margin-bottom: 40px }
-      #messages li.sysmsg { background: rgb(130, 224, 255); }
-    </style>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!DOCTYPE html>
+<html class="mdc-typography">
+  <head>
+    <title>Material Components for the web</title>
+    <link rel="stylesheet"
+          href="node_modules/material-components-web/dist/material-components-web.css">
+      <link href="/resources/styles/main.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <ul id="messages"></ul>
+  <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="mdc-toolbar__title">A demo chat in node and material design</span>
+        </section>
+      </div>
+    </header>
+
+    <main class="mdc-toolbar-fixed-adjust">
+      <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" /><button><i class="material-icons">send</i></button>
+          <input type="text" id="m" class="mdc-textfield__input" placeholder="enter your username then yout chat messages">
+           <button class="mdc-button mdc-button--raised mdc-button--primary" data-demo-no-js="">send</button>
     </form>
+    </main>
+    </div>
+    <script src="/node_modules/material-components-web/dist/material-components-web.js"></script>
+    <script>mdc.autoInit()</script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      $(function () {
-        var username = '';
-        var socket = io();
-        $('form').submit(function(){
-          var msg = $('#m').val();
-          if(msg){
-          if(username){
-            socket.emit('chat message', msg);
-          } else {
-            username = $('#m').val();
-            socket.emit('nickname chosen', msg);
-          }
-          $('#m').val('');
-          }
-          return false;
-        });
-        socket.on('chat message', function(msg){
-          // var item = $('#messages').append($('<li>'));
-          var item = $('<li>');
-          item.append($('<b>').text(msg.user+': '));
-          item.append(msg.msg);
-          $('#messages').append(item);
-          window.scrollTo(0, document.body.scrollHeight);
-        });
-        socket.on('user join', function(user){
-          $('#messages').append($('<li class="sysmsg">').text('** '+user+' has joined the conversation **'));
-          window.scrollTo(0, document.body.scrollHeight);
-        });
-      });
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
-
