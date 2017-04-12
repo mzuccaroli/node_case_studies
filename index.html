@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html class="mdc-typography">
+  <head>
+    <title>Material Components for the web</title>
+    <link rel="stylesheet"
+          href="node_modules/material-components-web/dist/material-components-web.css">
+      <link href="/resources/styles/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+  <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="mdc-toolbar__title">A demo chat in node and material design</span>
+        </section>
+      </div>
+    </header>
+
+    <main class="mdc-toolbar-fixed-adjust">
+      <ul id="messages"></ul>
+    <form action="">
+          <input type="text" id="m" class="mdc-textfield__input" placeholder="enter your username then yout chat messages">
+           <button class="mdc-button mdc-button--raised mdc-button--primary" data-demo-no-js="">send</button>
+    </form>
+    </main>
+    </div>
+    <script src="/node_modules/material-components-web/dist/material-components-web.js"></script>
+    <script>mdc.autoInit()</script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
