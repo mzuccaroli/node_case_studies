@@ -4,6 +4,7 @@
   "description": "Node learling purposes app",
   "dependencies": {
     "express": "^4.15.2",
+    "fs": "0.0.1-security",
     "material-components-web": "^0.8.0",
     "socket.io": "^1.7.3"
   },
